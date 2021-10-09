@@ -1,22 +1,20 @@
-package com.dom.features.signin.ui
+package com.dom.features.signup.ui
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavController
 
 @Composable
-fun SignInView(navController: NavController) {
+fun SignUpView(navController: NavController) {
     var login by remember { mutableStateOf("") }
-    var passsword by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var passwordAgain by remember { mutableStateOf("") }
 
     Column {
         TextField(
@@ -26,22 +24,30 @@ fun SignInView(navController: NavController) {
             singleLine = true,
         )
         TextField(
-            value = passsword,
-            onValueChange = { passsword = it },
+            value = password,
+            onValueChange = { password = it },
             label = { Text("пароль") },
             singleLine = true,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
-        Button(
-            onClick = { /* TODO: переход на главную */ }
-        ) {
-            Text("вход")
-        }
-        Text(
-            text = "регистрация",
-            textDecoration = TextDecoration.Underline,
-            modifier = Modifier.clickable(onClick = { navController.navigate("signUp") })
+        TextField(
+            value = passwordAgain,
+            onValueChange = { passwordAgain = it },
+            label = { Text("еще раз пароль") },
+            singleLine = true,
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
+        Button(
+            onClick = { navController.popBackStack() }
+        ) {
+            Text("назад")
+        }
+        Button(
+            onClick = { navController.navigate("signIn") }
+        ) {
+            Text("ок")
+        }
     }
 }
