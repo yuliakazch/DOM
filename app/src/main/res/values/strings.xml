@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DOM</string>
+
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="password_again">Confirm password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="registration">Registration</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_account">Already have an account</string>
 </resources>
