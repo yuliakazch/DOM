@@ -19,15 +19,9 @@ class SignInRepositoryImpl @Inject constructor(
     override suspend fun signIn(credentials: Credentials) {
         clearToken()
         val credentialsDto = credentials.toDto()
-        val token = api.signIn(credentialsDto.login, credentialsDto.password).toEntity()
+        val token = api.signIn(credentialsDto.login, credentialsDto.passwordHash).toEntity()
         saveToken(token)
         return
-    }
-
-    private fun saveToken(token: Token) {
-        sharedPreferences.edit(commit = true) {
-            putString(TOKEN, token.toDto().value)
-        }
     }
 
     private fun clearToken() {
@@ -40,4 +34,10 @@ class SignInRepositoryImpl @Inject constructor(
 
     private fun isTokenExist(): Boolean =
         !sharedPreferences.getString(TOKEN, null).isNullOrEmpty()
+
+    private fun saveToken(token: Token) {
+        sharedPreferences.edit(commit = true) {
+            putString(TOKEN, token.toDto().value)
+        }
+    }
 }
