@@ -13,11 +13,13 @@ class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
 
-    fun signUp(login: String, password: String) {
+    fun signUp(login: String, onePassword: String, twoPassword: String) {
         viewModelScope.launch {
             try {
-                signUpUseCase(SignUpData(login, password))
-                // TODO: go to signIn
+                if (onePassword == twoPassword) {
+                    signUpUseCase(SignUpData(login, onePassword))
+                    // TODO: go to signIn
+                }
             } catch (e: Throwable) {
 
             }

@@ -20,7 +20,6 @@ import com.dom.shared.ui.image.LogoView
 import com.dom.shared.ui.textfield.LoginView
 import com.dom.shared.ui.textfield.PasswordDoneView
 import com.dom.shared.ui.textfield.PasswordNextView
-import com.dom.shared.util.NavigationKeys.SIGN_IN
 
 @ExperimentalComposeUiApi
 @Composable
@@ -58,7 +57,7 @@ fun SignUpView(navController: NavController) {
             passwordAgain = it
         }
         Button(
-            onClick = { navController.navigate(SIGN_IN) },
+            onClick = { navController.popBackStack() },
         ) {
             Text(stringResource(R.string.sign_up))
         }
