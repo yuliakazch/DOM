@@ -23,6 +23,7 @@ import com.dom.features.signin.presentation.SignInViewModel
 import com.dom.shared.ui.image.LogoView
 import com.dom.shared.ui.textfield.LoginView
 import com.dom.shared.ui.textfield.PasswordDoneView
+import com.dom.shared.util.NavigationKeys.HOME
 import com.dom.shared.util.NavigationKeys.SIGN_UP
 
 @ExperimentalComposeUiApi
@@ -59,7 +60,10 @@ fun SignInView(
             password = it
         }
         Button(
-            onClick = { viewModel.login(login, password) }
+            onClick = {
+                viewModel.login(login, password)
+                navController.navigate(HOME)
+            }
         ) {
             Text(stringResource(R.string.sign_in))
         }
