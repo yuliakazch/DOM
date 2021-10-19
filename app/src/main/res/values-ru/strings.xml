@@ -9,4 +9,6 @@
     <string name="registration">Регистрация</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="already_have_account">Уже есть аккаунт</string>
+
+    <string name="error">Произошла ошибка</string>
 </resources>

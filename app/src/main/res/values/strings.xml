@@ -8,4 +8,6 @@
     <string name="registration">Registration</string>
     <string name="sign_up">Sign up</string>
     <string name="already_have_account">Already have an account</string>
+
+    <string name="error">An error has occurred</string>
 </resources>
