@@ -2,8 +2,8 @@ package com.dom.shared.ui.textfield
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.res.stringResource
@@ -14,16 +14,20 @@ import com.dom.R
 fun LoginView(
     login: String,
     focusRequester: FocusRequester,
+    onAnimateScrolled: () -> Unit = {},
     onLoginChange: (String) -> Unit,
 ) {
-    TextField(
+    OutlinedTextField(
         value = login,
         onValueChange = onLoginChange,
         label = { Text(stringResource(R.string.login)) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         keyboardActions = KeyboardActions(
-            onNext = { focusRequester.requestFocus() }
+            onNext = {
+                onAnimateScrolled()
+                focusRequester.requestFocus()
+            }
         ),
     )
 }

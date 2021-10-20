@@ -2,10 +2,10 @@ package com.dom.features.signin.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
 import com.dom.R
 import com.dom.features.signin.presentation.SignInEffect
 import com.dom.features.signin.presentation.SignInEvent
@@ -27,6 +28,7 @@ import com.dom.shared.ui.textfield.PasswordDoneView
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @ExperimentalComposeUiApi
 @Composable
@@ -74,37 +76,53 @@ fun SignInContentView(
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Column(
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
+    LazyColumn(
+        state = listState,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
     ) {
-        LogoView()
-        LoginView(
-            login = state.credentials.login,
-            focusRequester = focusRequester,
-            onLoginChange = { onEventSent(SignInEvent.LoginChanged(it)) },
-        )
-        PasswordDoneView(
-            password = state.credentials.password,
-            label = stringResource(R.string.password),
-            keyboardController = keyboardController,
-            focusRequester = focusRequester,
-            onPasswordChange = { onEventSent(SignInEvent.PasswordChanged(it)) },
-        )
-        Button(
-            onClick = { onEventSent(SignInEvent.SignInClicked) },
-        ) {
-            Text(stringResource(R.string.sign_in))
+        item { LogoView() }
+        item {
+            LoginView(
+                login = state.credentials.login,
+                focusRequester = focusRequester,
+                onAnimateScrolled = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(index = 2)
+                    }
+                },
+                onLoginChange = { onEventSent(SignInEvent.LoginChanged(it)) },
+            )
         }
-        Text(
-            text = stringResource(R.string.registration),
-            textDecoration = TextDecoration.Underline,
-            modifier = Modifier.clickable {
-                onEventSent(SignInEvent.RegistrationClicked)
-            },
-        )
+        item {
+            PasswordDoneView(
+                password = state.credentials.password,
+                label = stringResource(R.string.password),
+                keyboardController = keyboardController,
+                focusRequester = focusRequester,
+                onPasswordChange = { onEventSent(SignInEvent.PasswordChanged(it)) },
+            )
+        }
+        item {
+            Button(
+                onClick = { onEventSent(SignInEvent.SignInClicked) },
+                modifier = Modifier.padding(vertical = 8.dp),
+            ) {
+                Text(stringResource(R.string.sign_in))
+            }
+        }
+        item {
+            Text(
+                text = stringResource(R.string.registration),
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.clickable {
+                    onEventSent(SignInEvent.RegistrationClicked)
+                },
+            )
+        }
     }
 }

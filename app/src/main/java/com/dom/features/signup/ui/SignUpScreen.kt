@@ -2,10 +2,10 @@ package com.dom.features.signup.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
 import com.dom.R
 import com.dom.features.signup.presentation.SignUpEffect
 import com.dom.features.signup.presentation.SignUpEvent
@@ -28,6 +29,7 @@ import com.dom.shared.ui.textfield.PasswordNextView
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @ExperimentalComposeUiApi
 @Composable
@@ -76,46 +78,67 @@ fun SignUpContentView(
     val focusRequesterTwo = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Column(
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
+    LazyColumn(
+        state = listState,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
     ) {
-        LogoView()
-        LoginView(
-            login = state.content.login,
-            focusRequester = focusRequesterOne,
-            onLoginChange = { onEventSent(SignUpEvent.LoginChanged(it)) },
-        )
-        PasswordNextView(
-            password = state.content.password,
-            label = stringResource(R.string.password),
-            focusRequesterOne = focusRequesterOne,
-            focusRequesterTwo = focusRequesterTwo,
-            onPasswordChange = { onEventSent(SignUpEvent.PasswordChanged(it)) }
-        )
-        PasswordDoneView(
-            password = state.content.passwordAgain,
-            label = stringResource(R.string.password_again),
-            keyboardController = keyboardController,
-            focusRequester = focusRequesterTwo,
-            onPasswordChange = { onEventSent(SignUpEvent.PasswordAgainChanged(it)) },
-        )
-        Button(
-            onClick = {
-                onEventSent(SignUpEvent.SignUpClicked)
-            },
-        ) {
-            Text(stringResource(R.string.sign_up))
+        item { LogoView() }
+        item {
+            LoginView(
+                login = state.content.login,
+                focusRequester = focusRequesterOne,
+                onAnimateScrolled = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(index = 2)
+                    }
+                },
+                onLoginChange = { onEventSent(SignUpEvent.LoginChanged(it)) },
+            )
         }
-        Text(
-            text = stringResource(R.string.already_have_account),
-            textDecoration = TextDecoration.Underline,
-            modifier = Modifier.clickable {
-                onEventSent(SignUpEvent.AuthorizationClicked)
-            },
-        )
+        item {
+            PasswordNextView(
+                password = state.content.password,
+                label = stringResource(R.string.password),
+                focusRequesterOne = focusRequesterOne,
+                focusRequesterTwo = focusRequesterTwo,
+                onAnimateScrolled = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(index = 3)
+                    }
+                },
+                onPasswordChange = { onEventSent(SignUpEvent.PasswordChanged(it)) }
+            )
+        }
+        item {
+            PasswordDoneView(
+                password = state.content.passwordAgain,
+                label = stringResource(R.string.password_again),
+                keyboardController = keyboardController,
+                focusRequester = focusRequesterTwo,
+                onPasswordChange = { onEventSent(SignUpEvent.PasswordAgainChanged(it)) },
+            )
+        }
+        item {
+            Button(
+                onClick = { onEventSent(SignUpEvent.SignUpClicked) },
+                modifier = Modifier.padding(vertical = 8.dp)
+            ) {
+                Text(stringResource(R.string.sign_up))
+            }
+        }
+        item {
+            Text(
+                text = stringResource(R.string.already_have_account),
+                textDecoration = TextDecoration.Underline,
+                modifier = Modifier.clickable {
+                    onEventSent(SignUpEvent.AuthorizationClicked)
+                },
+            )
+        }
     }
 }

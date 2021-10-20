@@ -2,8 +2,8 @@ package com.dom.shared.ui.textfield
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -18,9 +18,10 @@ fun PasswordNextView(
     label: String,
     focusRequesterOne: FocusRequester,
     focusRequesterTwo: FocusRequester,
+    onAnimateScrolled: () -> Unit = {},
     onPasswordChange: (String) -> Unit,
 ) {
-    TextField(
+    OutlinedTextField(
         value = password,
         onValueChange = onPasswordChange,
         label = { Text(label) },
@@ -31,7 +32,10 @@ fun PasswordNextView(
             imeAction = ImeAction.Next
         ),
         keyboardActions = KeyboardActions(
-            onNext = { focusRequesterTwo.requestFocus() }
+            onNext = {
+                onAnimateScrolled()
+                focusRequesterTwo.requestFocus()
+            }
         ),
         modifier = Modifier.focusRequester(focusRequesterOne),
     )
