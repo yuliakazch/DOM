@@ -21,6 +21,7 @@ import com.dom.shared.util.NavigationKeys.HOME
 import com.dom.shared.util.NavigationKeys.PROFILE
 import com.dom.shared.util.NavigationKeys.SIGN_IN
 import com.dom.shared.util.NavigationKeys.SIGN_UP
+import com.dom.shared.util.TitleAppbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalComposeUiApi
@@ -39,6 +40,10 @@ class MainActivity : ComponentActivity() {
 fun DOMApp() {
     DOMTheme {
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+        val currentRoute = currentDestination?.route
+
         val coreScreens = listOf(
             CoreBottomScreen.Home,
             CoreBottomScreen.Profile,
@@ -46,13 +51,19 @@ fun DOMApp() {
 
         Surface(color = MaterialTheme.colors.background) {
             Scaffold(
+                topBar = {
+                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP && currentRoute != null) {
+                        TopAppBar(
+                            title = { TitleAppbar(currentRoute) },
+                            backgroundColor = MaterialTheme.colors.background,
+                        )
+                    }
+                },
                 bottomBar = {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-                    val currentRoute = currentDestination?.route
-
                     if (currentRoute != SIGN_IN && currentRoute != SIGN_UP) {
-                        BottomNavigation {
+                        BottomNavigation(
+                            backgroundColor = MaterialTheme.colors.background,
+                        ) {
                             coreScreens.forEach { screen ->
                                 BottomNavigationItem(
                                     icon = { Icon(screen.image, contentDescription = null) },
