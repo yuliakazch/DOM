@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">DOM</string>
 
+    <string name="error">Произошла ошибка</string>
+
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="password_again">Еще раз пароль</string>
@@ -10,5 +12,6 @@
     <string name="sign_up">Зарегистрироваться</string>
     <string name="already_have_account">Уже есть аккаунт</string>
 
-    <string name="error">Произошла ошибка</string>
+    <string name="home_title">Главная</string>
+    <string name="profile_title">Профиль</string>
 </resources>
