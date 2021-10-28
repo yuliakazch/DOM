@@ -20,7 +20,7 @@ import com.dom.R
 import com.dom.features.signup.presentation.SignUpEffect
 import com.dom.features.signup.presentation.SignUpEvent
 import com.dom.features.signup.presentation.SignUpState
-import com.dom.shared.core.LAUNCH_LISTEN_FOR_EFFECTS
+import com.dom.shared.base.LAUNCH_LISTEN_FOR_EFFECTS
 import com.dom.shared.ui.image.LogoView
 import com.dom.shared.ui.progress.LoadingView
 import com.dom.shared.ui.textfield.LoginView
@@ -60,7 +60,7 @@ fun SignUpScreen(
     Scaffold(
         scaffoldState = scaffoldState,
     ) {
-        if (state.isLoading) {
+        if (state.loading) {
             LoadingView()
         } else {
             SignUpContentView(state, onEventSent)

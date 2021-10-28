@@ -1,9 +1,9 @@
 package com.dom.features.signin.presentation
 
 import com.dom.features.signin.domain.entity.Credentials
-import com.dom.shared.core.ViewEvent
-import com.dom.shared.core.ViewSideEffect
-import com.dom.shared.core.ViewState
+import com.dom.shared.base.ViewEvent
+import com.dom.shared.base.ViewSideEffect
+import com.dom.shared.base.ViewState
 
 sealed class SignInEvent : ViewEvent {
 
@@ -16,7 +16,7 @@ sealed class SignInEvent : ViewEvent {
     data class PasswordChanged(val newValue: String) : SignInEvent()
 }
 
-data class SignInState(val credentials: Credentials, val isLoading: Boolean = false) : ViewState
+data class SignInState(val credentials: Credentials, val loading: Boolean = false) : ViewState
 
 sealed class SignInEffect : ViewSideEffect {
 

@@ -1,8 +1,8 @@
 package com.dom.features.signup.presentation
 
-import com.dom.shared.core.ViewEvent
-import com.dom.shared.core.ViewSideEffect
-import com.dom.shared.core.ViewState
+import com.dom.shared.base.ViewEvent
+import com.dom.shared.base.ViewSideEffect
+import com.dom.shared.base.ViewState
 
 sealed class SignUpEvent : ViewEvent {
 
@@ -17,7 +17,7 @@ sealed class SignUpEvent : ViewEvent {
     data class PasswordAgainChanged(val newValue: String) : SignUpEvent()
 }
 
-data class SignUpState(val content: SignUpContent, val isLoading: Boolean = false) : ViewState
+data class SignUpState(val content: SignUpContent, val loading: Boolean = false) : ViewState
 
 sealed class SignUpEffect : ViewSideEffect {
 

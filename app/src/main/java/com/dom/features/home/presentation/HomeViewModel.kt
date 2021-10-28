@@ -1,6 +1,6 @@
 package com.dom.features.home.presentation
 
-import com.dom.shared.core.BaseViewModel
+import com.dom.shared.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

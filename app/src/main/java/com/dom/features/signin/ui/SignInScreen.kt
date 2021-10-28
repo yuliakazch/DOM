@@ -20,7 +20,7 @@ import com.dom.R
 import com.dom.features.signin.presentation.SignInEffect
 import com.dom.features.signin.presentation.SignInEvent
 import com.dom.features.signin.presentation.SignInState
-import com.dom.shared.core.LAUNCH_LISTEN_FOR_EFFECTS
+import com.dom.shared.base.LAUNCH_LISTEN_FOR_EFFECTS
 import com.dom.shared.ui.image.LogoView
 import com.dom.shared.ui.progress.LoadingView
 import com.dom.shared.ui.textfield.LoginView
@@ -59,7 +59,7 @@ fun SignInScreen(
     Scaffold(
         scaffoldState = scaffoldState,
     ) {
-        if (state.isLoading) {
+        if (state.loading) {
             LoadingView()
         } else {
             SignInContentView(state, onEventSent)

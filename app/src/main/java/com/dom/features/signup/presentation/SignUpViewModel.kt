@@ -3,7 +3,7 @@ package com.dom.features.signup.presentation
 import androidx.lifecycle.viewModelScope
 import com.dom.features.signup.domain.entity.SignUpData
 import com.dom.features.signup.domain.usecases.SignUpUseCase
-import com.dom.shared.core.BaseViewModel
+import com.dom.shared.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -48,7 +48,7 @@ class SignUpViewModel @Inject constructor(
 
     fun signUp() {
         viewModelScope.launch {
-            setState { copy(isLoading = true) }
+            setState { copy(loading = true) }
             try {
                 val login = viewState.value.content.login
                 val password = viewState.value.content.password
@@ -69,7 +69,7 @@ class SignUpViewModel @Inject constructor(
         setState {
             copy(
                 content = content.copy(password = "", passwordAgain = ""),
-                isLoading = false
+                loading = false
             )
         }
         setEffect { SignUpEffect.Error() }

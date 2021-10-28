@@ -1,8 +1,8 @@
 package com.dom.features.home.presentation
 
-import com.dom.shared.core.ViewEvent
-import com.dom.shared.core.ViewSideEffect
-import com.dom.shared.core.ViewState
+import com.dom.shared.base.ViewEvent
+import com.dom.shared.base.ViewSideEffect
+import com.dom.shared.base.ViewState
 
 sealed class HomeEvent : ViewEvent
 
