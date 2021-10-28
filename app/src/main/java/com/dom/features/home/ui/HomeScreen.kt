@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 fun HomeScreen(
     state: HomeState,
-    effectFlow: Flow<HomeEffect>,
+    effectFlow: Flow<HomeEffect>?,
     onEventSent: (event: HomeEvent) -> Unit,
     onNavigationRequested: (navigationEffect: HomeEffect.Navigation) -> Unit
 ) {
