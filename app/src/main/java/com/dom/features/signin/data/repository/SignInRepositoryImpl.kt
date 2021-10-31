@@ -19,7 +19,7 @@ class SignInRepositoryImpl @Inject constructor(
     override suspend fun signIn(credentials: Credentials) {
         clearToken()
         val credentialsDto = credentials.toDto()
-        val token = api.signIn(credentialsDto.login, credentialsDto.passwordHash).toEntity()
+        val token = api.signIn(credentialsDto).toEntity()
         saveToken(token)
         return
     }
