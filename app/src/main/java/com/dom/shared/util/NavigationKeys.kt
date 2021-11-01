@@ -2,6 +2,7 @@ package com.dom.shared.util
 
 object NavigationKeys {
 
+    const val SPLASH = "splash"
     const val SIGN_IN = "signIn"
     const val SIGN_UP = "signUp"
     const val HOME_ROUTE = "homeRoute"

@@ -11,4 +11,7 @@ class LogoutRepositoryImpl @Inject constructor(
     override fun clearToken() {
         dataSource.clearToken()
     }
+
+    override fun isTokenExist(): Boolean =
+        dataSource.isTokenExist()
 }

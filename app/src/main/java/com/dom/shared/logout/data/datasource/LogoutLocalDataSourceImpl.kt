@@ -14,4 +14,7 @@ class LogoutLocalDataSourceImpl @Inject constructor(
             remove(KeyArgs.TOKEN)
         }
     }
+
+    override fun isTokenExist(): Boolean =
+        !sharedPreferences.getString(KeyArgs.TOKEN, null).isNullOrEmpty()
 }

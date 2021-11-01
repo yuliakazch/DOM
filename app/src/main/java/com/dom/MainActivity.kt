@@ -15,12 +15,14 @@ import com.dom.features.home.ui.HomeDestination
 import com.dom.features.profile.ui.ProfileDestination
 import com.dom.features.signin.ui.SignInDestination
 import com.dom.features.signup.ui.SignUpDestination
+import com.dom.features.splash.ui.SplashDestination
 import com.dom.shared.util.CoreBottomScreen
 import com.dom.shared.ui.theme.DOMTheme
 import com.dom.shared.util.NavigationKeys.HOME
 import com.dom.shared.util.NavigationKeys.PROFILE
 import com.dom.shared.util.NavigationKeys.SIGN_IN
 import com.dom.shared.util.NavigationKeys.SIGN_UP
+import com.dom.shared.util.NavigationKeys.SPLASH
 import com.dom.shared.util.TitleAppbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +54,9 @@ fun DOMApp() {
         Surface(color = MaterialTheme.colors.background) {
             Scaffold(
                 topBar = {
-                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP && currentRoute != null) {
+                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP
+                        && currentRoute != SPLASH && currentRoute != null
+                    ) {
                         TopAppBar(
                             title = { TitleAppbar(currentRoute) },
                             backgroundColor = MaterialTheme.colors.background,
@@ -60,7 +64,7 @@ fun DOMApp() {
                     }
                 },
                 bottomBar = {
-                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP) {
+                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP && currentRoute != SPLASH) {
                         BottomNavigation(
                             backgroundColor = MaterialTheme.colors.background,
                         ) {
@@ -84,7 +88,8 @@ fun DOMApp() {
                     }
                 }
             ) {
-                NavHost(navController = navController, startDestination = SIGN_IN) {
+                NavHost(navController = navController, startDestination = SPLASH) {
+                    composable(SPLASH) { SplashDestination(navController) }
                     composable(SIGN_IN) { SignInDestination(navController) }
                     composable(SIGN_UP) { SignUpDestination(navController) }
                     navigation(
