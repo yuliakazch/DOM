@@ -11,8 +11,8 @@ import com.dom.R
 @Composable
 fun LogoView() {
     Image(
-        painter = painterResource(R.drawable.ic_logo_v),
-        contentDescription = "Logo",
+        painter = painterResource(R.drawable.ic_cat_logo),
+        contentDescription = null,
         modifier = Modifier.size(width = 140.dp, height = 180.dp),
     )
 }
