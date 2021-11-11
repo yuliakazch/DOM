@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.dom.R
+import com.dom.components.topbar.TopBarView
 import com.dom.features.profile.presentation.ProfileEffect
 import com.dom.features.profile.presentation.ProfileEvent
 import com.dom.features.profile.presentation.ProfileState
@@ -21,46 +22,51 @@ import kotlinx.coroutines.flow.onEach
 
 @Composable
 fun ProfileScreen(
-    state: ProfileState,
-    effectFlow: Flow<ProfileEffect>?,
-    onEventSent: (event: ProfileEvent) -> Unit,
-    onNavigationRequested: (navigationEffect: ProfileEffect.Navigation) -> Unit
+	state: ProfileState,
+	effectFlow: Flow<ProfileEffect>?,
+	onEventSent: (event: ProfileEvent) -> Unit,
+	onNavigationRequested: (navigationEffect: ProfileEffect.Navigation) -> Unit
 ) {
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
+	val scaffoldState: ScaffoldState = rememberScaffoldState()
 
-    val textError = stringResource(R.string.error)
+	val textError = stringResource(R.string.error)
 
-    LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
-        effectFlow?.onEach { effect ->
-            when (effect) {
-                is ProfileEffect.Error ->
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = effect.message ?: textError,
-                        duration = SnackbarDuration.Short
-                    )
-                is ProfileEffect.Navigation ->
-                    onNavigationRequested(effect)
-            }
-        }?.collect()
-    }
+	LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
+		effectFlow?.onEach { effect ->
+			when (effect) {
+				is ProfileEffect.Error      ->
+					scaffoldState.snackbarHostState.showSnackbar(
+						message = effect.message ?: textError,
+						duration = SnackbarDuration.Short
+					)
+				is ProfileEffect.Navigation ->
+					onNavigationRequested(effect)
+			}
+		}?.collect()
+	}
 
-    Scaffold(
-        scaffoldState = scaffoldState,
-    ) {
-        if (state.loading) {
-            LoadingView()
-        } else {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                Button(
-                    onClick = { onEventSent(ProfileEvent.LogoutClicked) },
-                ) {
-                    Text(stringResource(R.string.profile_logout))
-                }
-            }
-        }
-    }
+	Scaffold(
+		scaffoldState = scaffoldState,
+		topBar = {
+			TopBarView(
+				title = stringResource(R.string.profile_title),
+			)
+		},
+	) {
+		if (state.loading) {
+			LoadingView()
+		} else {
+			Column(
+				verticalArrangement = Arrangement.Center,
+				horizontalAlignment = Alignment.CenterHorizontally,
+				modifier = Modifier.fillMaxSize(),
+			) {
+				Button(
+					onClick = { onEventSent(ProfileEvent.LogoutClicked) },
+				) {
+					Text(stringResource(R.string.profile_logout))
+				}
+			}
+		}
+	}
 }

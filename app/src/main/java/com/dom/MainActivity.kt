@@ -23,89 +23,79 @@ import com.dom.shared.util.NavigationKeys.PROFILE
 import com.dom.shared.util.NavigationKeys.SIGN_IN
 import com.dom.shared.util.NavigationKeys.SIGN_UP
 import com.dom.shared.util.NavigationKeys.SPLASH
-import com.dom.shared.util.TitleAppbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            DOMApp()
-        }
-    }
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContent {
+			DOMApp()
+		}
+	}
 }
 
 @ExperimentalComposeUiApi
 @Composable
 fun DOMApp() {
-    DOMTheme {
-        val navController = rememberNavController()
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentDestination = navBackStackEntry?.destination
-        val currentRoute = currentDestination?.route
+	DOMTheme {
+		val navController = rememberNavController()
+		val navBackStackEntry by navController.currentBackStackEntryAsState()
+		val currentDestination = navBackStackEntry?.destination
+		val currentRoute = currentDestination?.route
 
-        val coreScreens = listOf(
-            CoreBottomScreen.Home,
-            CoreBottomScreen.Profile,
-        )
+		val coreScreens = listOf(
+			CoreBottomScreen.Home,
+			CoreBottomScreen.Profile,
+		)
 
-        Surface(color = MaterialTheme.colors.background) {
-            Scaffold(
-                topBar = {
-                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP
-                        && currentRoute != SPLASH && currentRoute != null
-                    ) {
-                        TopAppBar(
-                            title = { TitleAppbar(currentRoute) },
-                            backgroundColor = MaterialTheme.colors.background,
-                        )
-                    }
-                },
-                bottomBar = {
-                    if (currentRoute != SIGN_IN && currentRoute != SIGN_UP && currentRoute != SPLASH) {
-                        BottomNavigation(
-                            backgroundColor = MaterialTheme.colors.background,
-                        ) {
-                            coreScreens.forEach { screen ->
-                                BottomNavigationItem(
-                                    icon = { Icon(screen.image, contentDescription = null) },
-                                    label = { Text(stringResource(screen.stringId)) },
-                                    selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                                    onClick = {
-                                        navController.navigate(screen.route) {
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                saveState = true
-                                            }
-                                            launchSingleTop = true
-                                            restoreState = true
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    }
-                }
-            ) {
-                NavHost(navController = navController, startDestination = SPLASH) {
-                    composable(SPLASH) { SplashDestination(navController) }
-                    composable(SIGN_IN) { SignInDestination(navController) }
-                    composable(SIGN_UP) { SignUpDestination(navController) }
-                    navigation(
-                        startDestination = HOME,
-                        route = CoreBottomScreen.Home.route,
-                    ) {
-                        composable(HOME) { HomeDestination(navController) }
-                    }
-                    navigation(
-                        startDestination = PROFILE,
-                        route = CoreBottomScreen.Profile.route,
-                    ) {
-                        composable(PROFILE) { ProfileDestination(navController) }
-                    }
-                }
-            }
-        }
-    }
+		Surface(color = MaterialTheme.colors.background) {
+			Scaffold(
+				bottomBar = {
+					if (currentRoute != SIGN_IN && currentRoute != SIGN_UP && currentRoute != SPLASH) {
+						BottomNavigation(
+							backgroundColor = MaterialTheme.colors.background,
+						) {
+							coreScreens.forEach { screen ->
+								BottomNavigationItem(
+									icon = { Icon(screen.image, contentDescription = null) },
+									label = { Text(stringResource(screen.stringId)) },
+									selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+									onClick = {
+										navController.navigate(screen.route) {
+											popUpTo(navController.graph.findStartDestination().id) {
+												saveState = true
+											}
+											launchSingleTop = true
+											restoreState = true
+										}
+									}
+								)
+							}
+						}
+					}
+				}
+			) {
+				NavHost(navController = navController, startDestination = SPLASH) {
+					composable(SPLASH) { SplashDestination(navController) }
+					composable(SIGN_IN) { SignInDestination(navController) }
+					composable(SIGN_UP) { SignUpDestination(navController) }
+					navigation(
+						startDestination = HOME,
+						route = CoreBottomScreen.Home.route,
+					) {
+						composable(HOME) { HomeDestination(navController) }
+					}
+					navigation(
+						startDestination = PROFILE,
+						route = CoreBottomScreen.Profile.route,
+					) {
+						composable(PROFILE) { ProfileDestination(navController) }
+					}
+				}
+			}
+		}
+	}
 }
