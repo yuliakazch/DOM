@@ -1,4 +1,4 @@
-package com.dom.shared.util
+package com.dom.core
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -6,8 +6,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.dom.R
-import com.dom.shared.util.NavigationKeys.HOME_ROUTE
-import com.dom.shared.util.NavigationKeys.PROFILE_ROUTE
+import com.dom.core.NavigationKeys.HOME_ROUTE
+import com.dom.core.NavigationKeys.PROFILE_ROUTE
 
 sealed class CoreBottomScreen(
     val route: String,

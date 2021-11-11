@@ -11,18 +11,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
+import com.dom.components.theme.DOMTheme
 import com.dom.features.home.ui.HomeDestination
 import com.dom.features.profile.ui.ProfileDestination
 import com.dom.features.signin.ui.SignInDestination
 import com.dom.features.signup.ui.SignUpDestination
 import com.dom.features.splash.ui.SplashDestination
-import com.dom.shared.util.CoreBottomScreen
-import com.dom.shared.ui.theme.DOMTheme
-import com.dom.shared.util.NavigationKeys.HOME
-import com.dom.shared.util.NavigationKeys.PROFILE
-import com.dom.shared.util.NavigationKeys.SIGN_IN
-import com.dom.shared.util.NavigationKeys.SIGN_UP
-import com.dom.shared.util.NavigationKeys.SPLASH
+import com.dom.core.CoreBottomScreen
+import com.dom.core.NavigationKeys.HOME
+import com.dom.core.NavigationKeys.PROFILE
+import com.dom.core.NavigationKeys.SIGN_IN
+import com.dom.core.NavigationKeys.SIGN_UP
+import com.dom.core.NavigationKeys.SPLASH
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalComposeUiApi

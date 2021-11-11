@@ -1,4 +1,4 @@
-package com.dom.shared.ui.textfield
+package com.dom.components.textfield
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions

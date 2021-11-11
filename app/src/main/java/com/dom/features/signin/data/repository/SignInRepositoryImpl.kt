@@ -8,7 +8,7 @@ import com.dom.features.signin.data.mapper.toEntity
 import com.dom.features.signin.domain.entity.Credentials
 import com.dom.features.signin.domain.entity.Token
 import com.dom.features.signin.domain.repository.SignInRepository
-import com.dom.shared.util.KeyArgs.TOKEN
+import com.dom.core.KeyArgs.TOKEN
 import javax.inject.Inject
 
 class SignInRepositoryImpl @Inject constructor(

@@ -1,6 +1,6 @@
 package com.dom.features.profile.presentation
 
-import com.dom.shared.base.BaseViewModel
+import com.dom.core.BaseViewModel
 import com.dom.shared.logout.domain.usecase.ClearTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.dom.shared.ui.image
+package com.dom.components.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size

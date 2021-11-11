@@ -1,4 +1,4 @@
-package com.dom.shared.ui.progress
+package com.dom.components.progress
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

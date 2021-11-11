@@ -14,8 +14,8 @@ import com.dom.components.topbar.TopBarView
 import com.dom.features.profile.presentation.ProfileEffect
 import com.dom.features.profile.presentation.ProfileEvent
 import com.dom.features.profile.presentation.ProfileState
-import com.dom.shared.base.LAUNCH_LISTEN_FOR_EFFECTS
-import com.dom.shared.ui.progress.LoadingView
+import com.dom.components.progress.LoadingView
+import com.dom.core.LAUNCH_LISTEN_FOR_EFFECTS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

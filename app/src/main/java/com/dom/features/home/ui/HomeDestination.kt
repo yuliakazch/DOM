@@ -8,12 +8,12 @@ import com.dom.features.home.presentation.HomeViewModel
 
 @Composable
 fun HomeDestination(navController: NavHostController) {
-    val viewModel = hiltViewModel<HomeViewModel>()
-    val state = viewModel.viewState.collectAsState().value
-    HomeScreen(
-        state = state,
-        effectFlow = viewModel.effect,
-        onEventSent = { event -> viewModel.setEvent(event) },
-        onNavigationRequested = {}
-    )
+	val viewModel = hiltViewModel<HomeViewModel>()
+	val state = viewModel.viewState.collectAsState().value
+	HomeScreen(
+		state = state,
+		effectFlow = viewModel.effect,
+		onEventSent = { event -> viewModel.setEvent(event) },
+		onNavigationRequested = {}
+	)
 }

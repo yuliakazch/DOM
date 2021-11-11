@@ -2,7 +2,7 @@ package com.dom.shared.logout.data.datasource
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.dom.shared.util.KeyArgs
+import com.dom.core.KeyArgs
 import javax.inject.Inject
 
 class LogoutLocalDataSourceImpl @Inject constructor(

@@ -1,4 +1,4 @@
-package com.dom.shared.util
+package com.dom.core
 
 object KeyArgs {
 

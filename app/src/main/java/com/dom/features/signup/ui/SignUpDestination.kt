@@ -11,18 +11,18 @@ import com.dom.features.signup.presentation.SignUpViewModel
 @ExperimentalComposeUiApi
 @Composable
 fun SignUpDestination(navController: NavHostController) {
-    val viewModel: SignUpViewModel = hiltViewModel()
-    val state = viewModel.viewState.collectAsState().value
-    SignUpScreen(
-        state = state,
-        effectFlow = viewModel.effect,
-        onEventSent = { event -> viewModel.setEvent(event) },
-        onNavigationRequested = { navigationEffect ->
-            when (navigationEffect) {
-                is SignUpEffect.Navigation.ToAuthorization -> {
-                    navController.popBackStack()
-                }
-            }
-        }
-    )
+	val viewModel: SignUpViewModel = hiltViewModel()
+	val state = viewModel.viewState.collectAsState().value
+	SignUpScreen(
+		state = state,
+		effectFlow = viewModel.effect,
+		onEventSent = { event -> viewModel.setEvent(event) },
+		onNavigationRequested = { navigationEffect ->
+			when (navigationEffect) {
+				is SignUpEffect.Navigation.ToAuthorization -> {
+					navController.popBackStack()
+				}
+			}
+		}
+	)
 }

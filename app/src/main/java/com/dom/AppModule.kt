@@ -2,9 +2,9 @@ package com.dom
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.dom.shared.util.Config
-import com.dom.shared.util.KeyArgs.TOKEN
-import com.dom.shared.util.KeyArgs.TOKEN_REFERENCES
+import com.dom.core.Config
+import com.dom.core.KeyArgs.TOKEN
+import com.dom.core.KeyArgs.TOKEN_REFERENCES
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

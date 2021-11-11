@@ -1,4 +1,4 @@
-package com.dom.shared.base
+package com.dom.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

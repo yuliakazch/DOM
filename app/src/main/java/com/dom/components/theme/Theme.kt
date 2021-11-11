@@ -1,4 +1,4 @@
-package com.dom.shared.ui.theme
+package com.dom.components.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
