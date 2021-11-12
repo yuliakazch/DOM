@@ -3,6 +3,7 @@ package com.dom
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +26,7 @@ import com.dom.core.NavigationKeys.SIGN_UP
 import com.dom.core.NavigationKeys.SPLASH
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -37,6 +39,7 @@ class MainActivity : ComponentActivity() {
 	}
 }
 
+@ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @Composable
 fun DOMApp() {

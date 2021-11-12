@@ -15,6 +15,7 @@ import com.dom.features.profile.presentation.ProfileEffect
 import com.dom.features.profile.presentation.ProfileEvent
 import com.dom.features.profile.presentation.ProfileState
 import com.dom.components.progress.LoadingView
+import com.dom.components.theme.VeryLightGray
 import com.dom.core.LAUNCH_LISTEN_FOR_EFFECTS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -53,18 +54,23 @@ fun ProfileScreen(
 			)
 		},
 	) {
-		if (state.loading) {
-			LoadingView()
-		} else {
-			Column(
-				verticalArrangement = Arrangement.Center,
-				horizontalAlignment = Alignment.CenterHorizontally,
-				modifier = Modifier.fillMaxSize(),
-			) {
-				Button(
-					onClick = { onEventSent(ProfileEvent.LogoutClicked) },
+		Surface(
+			color = VeryLightGray,
+			modifier = Modifier.fillMaxSize()
+		) {
+			if (state.loading) {
+				LoadingView()
+			} else {
+				Column(
+					verticalArrangement = Arrangement.Center,
+					horizontalAlignment = Alignment.CenterHorizontally,
+					modifier = Modifier.fillMaxSize(),
 				) {
-					Text(stringResource(R.string.profile_logout))
+					Button(
+						onClick = { onEventSent(ProfileEvent.LogoutClicked) },
+					) {
+						Text(stringResource(R.string.profile_logout))
+					}
 				}
 			}
 		}

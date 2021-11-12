@@ -13,6 +13,8 @@
 
     <string name="home_title">Home</string>
 
+    <string name="new_folder">New folder</string>
+
     <string name="profile_title">Profile</string>
     <string name="profile_logout">Logout</string>
 </resources>

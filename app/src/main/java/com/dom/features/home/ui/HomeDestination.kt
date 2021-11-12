@@ -1,11 +1,13 @@
 package com.dom.features.home.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.dom.features.home.presentation.HomeViewModel
 
+@ExperimentalFoundationApi
 @Composable
 fun HomeDestination(navController: NavHostController) {
 	val viewModel = hiltViewModel<HomeViewModel>()
