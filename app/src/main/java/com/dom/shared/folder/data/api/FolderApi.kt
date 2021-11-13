@@ -11,6 +11,6 @@ interface FolderApi {
 	@GET("/api/Folders/Get")
 	suspend fun get(): FoldersResultDto
 
-	@POST
+	@POST("/api/Folders/Create")
 	suspend fun create(@Body folder: FolderDto)
 }

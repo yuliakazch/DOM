@@ -5,9 +5,20 @@ import com.dom.core.ViewSideEffect
 import com.dom.core.ViewState
 import com.dom.shared.folder.domain.entity.Folder
 
-sealed class HomeEvent : ViewEvent
+sealed class HomeEvent : ViewEvent {
 
-data class HomeState(val data: List<Folder>?, val loading: Boolean) : ViewState
+	object CreateNewFolderClicked : HomeEvent()
+
+	data class ShowNewFolderDialogChanged(val newValue: Boolean) : HomeEvent()
+
+	data class NameNewFolderChanged(val newValue: String) : HomeEvent()
+}
+
+data class HomeState(
+	val data: List<Folder>?,
+	val loading: Boolean,
+	val creationFolder: CreationFolder
+) : ViewState
 
 sealed class HomeEffect : ViewSideEffect {
 

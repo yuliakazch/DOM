@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dom.R
 
@@ -38,6 +39,8 @@ fun FolderItem(
 				style = MaterialTheme.typography.h6,
 				modifier = Modifier.fillMaxWidth(),
 				textAlign = TextAlign.Center,
+				maxLines = 1,
+				overflow = TextOverflow.Ellipsis,
 			)
 			Image(
 				painter = image ?: painterResource(R.drawable.ic_box),
