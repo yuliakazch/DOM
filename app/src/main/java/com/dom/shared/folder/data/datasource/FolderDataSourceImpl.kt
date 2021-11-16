@@ -15,4 +15,12 @@ class FolderDataSourceImpl @Inject constructor(
 	override suspend fun create(folder: FolderDto) {
 		api.create(folder)
 	}
+
+	override suspend fun update(folder: FolderDto) {
+		api.update(folder)
+	}
+
+	override suspend fun delete(id: Int) {
+		api.delete(id)
+	}
 }

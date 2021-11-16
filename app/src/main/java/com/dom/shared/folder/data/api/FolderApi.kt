@@ -5,6 +5,7 @@ import com.dom.shared.folder.data.dto.FoldersResultDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface FolderApi {
 
@@ -13,4 +14,10 @@ interface FolderApi {
 
 	@POST("/api/Folders/Create")
 	suspend fun create(@Body folder: FolderDto)
+
+	@POST("/api/Folders/Update")
+	suspend fun update(@Body folder: FolderDto)
+
+	@GET("/api/Folders/Delete/{id}")
+	suspend fun delete(@Path("id") id: Int)
 }

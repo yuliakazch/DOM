@@ -17,4 +17,12 @@ class FolderRepositoryImpl @Inject constructor(
 	override suspend fun create(folder: Folder) {
 		dataSource.create(folder.toDto())
 	}
+
+	override suspend fun update(folder: Folder) {
+		dataSource.update(folder.toDto())
+	}
+
+	override suspend fun delete(id: Int) {
+		dataSource.delete(id)
+	}
 }
