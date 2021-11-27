@@ -9,6 +9,8 @@ sealed class HomeEvent : ViewEvent {
 
 	object CreateNewFolderClicked : HomeEvent()
 
+	data class FolderClicked(val folderId: Int) : HomeEvent()
+
 	data class ShowNewFolderDialogChanged(val newValue: Boolean) : HomeEvent()
 
 	data class NameNewFolderChanged(val newValue: String) : HomeEvent()
@@ -24,5 +26,8 @@ sealed class HomeEffect : ViewSideEffect {
 
 	data class Error(val message: String? = null) : HomeEffect()
 
-	sealed class Navigation : HomeEffect()
+	sealed class Navigation : HomeEffect() {
+
+		data class ToFolderDetail(val folderId: Int) : Navigation()
+	}
 }

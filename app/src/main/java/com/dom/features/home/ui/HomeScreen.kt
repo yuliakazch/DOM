@@ -114,7 +114,7 @@ fun HomeView(
 			) {
 				folders.forEach { folder ->
 					item {
-						FolderItem(name = folder.name, image = null)
+						FolderItem(name = folder.name, image = null, onClick = { onEventSent(HomeEvent.FolderClicked(folder.id)) })
 					}
 				}
 			}

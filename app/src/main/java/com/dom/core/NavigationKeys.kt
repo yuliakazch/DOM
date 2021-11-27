@@ -9,4 +9,5 @@ object NavigationKeys {
     const val PROFILE_ROUTE = "profileRoute"
     const val HOME = "home"
     const val PROFILE = "profile"
+    const val FOLDER_DETAIL = "folderDetail"
 }

@@ -1,6 +1,7 @@
 package com.dom.features.home.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,9 +23,12 @@ import com.dom.R
 fun FolderItem(
 	name: String?,
 	image: Painter?,
+	onClick: () -> Unit,
 ) {
 	Card(
-		modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp),
+		modifier = Modifier
+			.padding(horizontal = 8.dp, vertical = 8.dp)
+			.clickable { onClick() },
 		elevation = 4.dp,
 		shape = RoundedCornerShape(corner = CornerSize(16.dp))
 	) {
