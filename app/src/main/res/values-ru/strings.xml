@@ -23,6 +23,8 @@
     <string name="name">Имя</string>
     <string name="edit_name">Редактирование папки</string>
 
+    <string name="new_subject">Новый предмет</string>
+
     <string name="profile_title">Профиль</string>
     <string name="profile_logout">Выйти из аккаунта</string>
 </resources>

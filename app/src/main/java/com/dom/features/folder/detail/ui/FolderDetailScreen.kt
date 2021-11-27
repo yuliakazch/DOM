@@ -1,6 +1,7 @@
 package com.dom.features.folder.detail.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -90,6 +91,16 @@ fun FolderDetailView(
         ) {
             if (state.editingFolder.showDialog) {
                 EditFolderAlertDialog(state.editingFolder.nameFolder, onEventSent)
+            }
+
+            LazyColumn(
+                modifier = Modifier.padding(vertical = 8.dp)
+            ) {
+                state.data?.subjects?.forEach { subject ->
+                    item {
+                        SubjectItem(name = subject.name, image = null, onClick = {})
+                    }
+                }
             }
         }
     }

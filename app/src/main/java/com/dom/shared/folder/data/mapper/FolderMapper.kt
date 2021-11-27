@@ -13,6 +13,6 @@ fun List<Folder>.toDtoList() = map { it.toDto() }
 
 fun List<FolderDto>.toEntityList() = map { it.toEntity() }
 
-fun FolderInfo.toDto() = FolderInfoDto(id, name, items.toDtoList())
+fun FolderInfo.toDto() = FolderInfoDto(id, name, subjects.toDtoList())
 
 fun FolderInfoDto.toEntity() = FolderInfo(id, name, items.toEntityList())
