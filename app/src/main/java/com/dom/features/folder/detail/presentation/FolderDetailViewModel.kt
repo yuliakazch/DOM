@@ -98,7 +98,7 @@ class FolderDetailViewModel @Inject constructor(
                 setState { copy(loading = true) }
                 try {
                     deleteFolderUseCase(id)
-                    setEffect { FolderDetailEffect.Navigation.ToBack }
+                    setEffect { FolderDetailEffect.Navigation.ToHome }
                 } catch (e: Throwable) {
                     setState { copy(loading = false) }
                     setEffect { FolderDetailEffect.Error() }

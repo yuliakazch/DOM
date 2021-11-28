@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.dom.core.NavigationKeys.HOME
 import com.dom.features.subject.detail.presentation.SubjectDetailEffect
 import com.dom.features.subject.detail.presentation.SubjectDetailViewModel
 
@@ -20,6 +21,12 @@ fun SubjectDetailDestination(navController: NavHostController) {
             when (navigationEffect) {
                 is SubjectDetailEffect.Navigation.ToBack -> {
                     navController.popBackStack()
+                }
+
+                is SubjectDetailEffect.Navigation.ToHome -> {
+                    navController.navigate(HOME) {
+                        popUpTo(HOME) { inclusive = true }
+                    }
                 }
 
                 is SubjectDetailEffect.Navigation.ToEditSubject -> {

@@ -64,7 +64,7 @@ class SubjectDetailViewModel @Inject constructor(
                 setState { copy(loading = true) }
                 try {
                     deleteSubjectUseCase(id)
-                    setEffect { SubjectDetailEffect.Navigation.ToBack }
+                    setEffect { SubjectDetailEffect.Navigation.ToHome }
                 } catch (e: Throwable) {
                     setState { copy(loading = false) }
                     setEffect { SubjectDetailEffect.Error() }
