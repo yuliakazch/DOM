@@ -1,5 +1,6 @@
 package com.dom.shared.folder.data.dto
 
+import com.dom.shared.subject.data.dto.SubjectDto
 import com.google.gson.annotations.SerializedName
 
 data class FolderInfoDto(

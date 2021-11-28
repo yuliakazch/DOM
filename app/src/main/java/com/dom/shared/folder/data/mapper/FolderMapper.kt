@@ -4,6 +4,8 @@ import com.dom.shared.folder.data.dto.FolderDto
 import com.dom.shared.folder.data.dto.FolderInfoDto
 import com.dom.shared.folder.domain.entity.Folder
 import com.dom.shared.folder.domain.entity.FolderInfo
+import com.dom.shared.subject.data.mapper.toDtoList
+import com.dom.shared.subject.data.mapper.toEntityList
 
 fun Folder.toDto() = FolderDto(id, name)
 
