@@ -6,6 +6,9 @@
     <string name="cancel">Cancel</string>
     <string name="create">Create</string>
     <string name="save">Save</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="not_indicated">Not indicated</string>
 
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -22,7 +25,12 @@
     <string name="name">Name</string>
     <string name="edit_name">Edit folder</string>
 
+    <string name="subject">Subject</string>
     <string name="new_subject">New subject</string>
+    <string name="note">Note</string>
+    <string name="price">Price</string>
+    <string name="amount">Amount</string>
+    <string name="private_subject">Private subject</string>
 
     <string name="profile_title">Profile</string>
     <string name="profile_logout">Logout</string>

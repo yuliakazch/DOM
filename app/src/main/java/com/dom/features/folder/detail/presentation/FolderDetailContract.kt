@@ -13,6 +13,8 @@ sealed class FolderDetailEvent : ViewEvent {
 
 	object BackClicked : FolderDetailEvent()
 
+	data class SubjectClicked(val subjectId: Int) : FolderDetailEvent()
+
 	data class ShowEditFolderDialogChanged(val newValue: Boolean) : FolderDetailEvent()
 
 	data class NameFolderChanged(val newValue: String) : FolderDetailEvent()
@@ -31,5 +33,7 @@ sealed class FolderDetailEffect : ViewSideEffect {
 	sealed class Navigation : FolderDetailEffect() {
 
 		object ToBack : Navigation()
+
+		data class ToSubjectDetail(val subjectId: Int) : Navigation()
 	}
 }

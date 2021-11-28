@@ -98,7 +98,7 @@ fun FolderDetailView(
             ) {
                 state.data?.subjects?.forEach { subject ->
                     item {
-                        SubjectItem(name = subject.name, image = null, onClick = {})
+                        SubjectItem(name = subject.name, image = null, onClick = { onEventSent(FolderDetailEvent.SubjectClicked(subject.id)) })
                     }
                 }
             }

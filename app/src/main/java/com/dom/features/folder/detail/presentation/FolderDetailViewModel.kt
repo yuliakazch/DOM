@@ -57,6 +57,10 @@ class FolderDetailViewModel @Inject constructor(
                 setEffect { FolderDetailEffect.Navigation.ToBack }
             }
 
+            is FolderDetailEvent.SubjectClicked -> {
+                setEffect { FolderDetailEffect.Navigation.ToSubjectDetail(event.subjectId) }
+            }
+
             is FolderDetailEvent.ShowEditFolderDialogChanged -> {
                 setState {
                     copy(editingFolder = editingFolder.copy(showDialog = event.newValue))

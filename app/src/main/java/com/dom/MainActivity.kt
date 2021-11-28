@@ -27,7 +27,9 @@ import com.dom.core.NavigationKeys.PROFILE
 import com.dom.core.NavigationKeys.SIGN_IN
 import com.dom.core.NavigationKeys.SIGN_UP
 import com.dom.core.NavigationKeys.SPLASH
+import com.dom.core.NavigationKeys.SUBJECT_DETAIL
 import com.dom.features.folder.detail.ui.FolderDetailDestination
+import com.dom.features.subject.detail.ui.SubjectDetailDestination
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalFoundationApi
@@ -94,11 +96,19 @@ fun DOMApp() {
                         route = CoreBottomScreen.Home.route,
                     ) {
                         composable(HOME) { HomeDestination(navController) }
+
                         composable(
                             route = "$FOLDER_DETAIL/{folderId}",
                             arguments = listOf(navArgument("folderId") { type = NavType.IntType }),
                         ) {
                             FolderDetailDestination(navController)
+                        }
+
+                        composable(
+                            route = "$SUBJECT_DETAIL/{subjectId}",
+                            arguments = listOf(navArgument("subjectId") { type = NavType.IntType }),
+                        ) {
+                            SubjectDetailDestination(navController)
                         }
                     }
                     navigation(

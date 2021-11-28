@@ -10,4 +10,6 @@ object NavigationKeys {
     const val HOME = "home"
     const val PROFILE = "profile"
     const val FOLDER_DETAIL = "folderDetail"
+    const val SUBJECT_DETAIL = "subjectDetail"
+    const val SUBJECT_EDIT = "subjectEdit"
 }

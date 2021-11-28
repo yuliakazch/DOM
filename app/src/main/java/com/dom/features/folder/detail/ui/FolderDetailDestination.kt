@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.dom.core.NavigationKeys.SUBJECT_DETAIL
 import com.dom.features.folder.detail.presentation.FolderDetailEffect
 import com.dom.features.folder.detail.presentation.FolderDetailViewModel
 
@@ -20,6 +21,10 @@ fun FolderDetailDestination(navController: NavHostController) {
             when (navigationEffect) {
                 is FolderDetailEffect.Navigation.ToBack -> {
                     navController.popBackStack()
+                }
+
+                is FolderDetailEffect.Navigation.ToSubjectDetail -> {
+                    navController.navigate("${SUBJECT_DETAIL}/${navigationEffect.subjectId}")
                 }
             }
         }
