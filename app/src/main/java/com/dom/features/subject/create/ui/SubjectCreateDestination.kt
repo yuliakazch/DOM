@@ -1,29 +1,29 @@
-package com.dom.features.subject.edit.ui
+package com.dom.features.subject.create.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.dom.core.NavigationKeys
-import com.dom.features.subject.edit.presentation.SubjectEditEffect
-import com.dom.features.subject.edit.presentation.SubjectEditViewModel
+import com.dom.features.subject.create.presentation.SubjectCreateEffect
+import com.dom.features.subject.create.presentation.SubjectCreateViewModel
 
 @Composable
-fun SubjectEditDestination(navController: NavHostController) {
-    val viewModel = hiltViewModel<SubjectEditViewModel>()
+fun SubjectCreateDestination(navController: NavHostController) {
+    val viewModel = hiltViewModel<SubjectCreateViewModel>()
     val state = viewModel.viewState.collectAsState().value
 
-    SubjectEditScreen(
+    SubjectCreateScreen(
         state = state,
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { navigationEffect ->
             when (navigationEffect) {
-                is SubjectEditEffect.Navigation.ToBack -> {
+                is SubjectCreateEffect.Navigation.ToBack -> {
                     navController.popBackStack()
                 }
 
-                is SubjectEditEffect.Navigation.ToHome -> {
+                is SubjectCreateEffect.Navigation.ToHome -> {
                     navController.navigate(NavigationKeys.HOME) {
                         popUpTo(NavigationKeys.HOME) { inclusive = true }
                     }

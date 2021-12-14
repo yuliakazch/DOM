@@ -7,6 +7,8 @@ import com.dom.shared.folder.domain.entity.FolderInfo
 
 sealed class FolderDetailEvent : ViewEvent {
 
+	object CreateSubjectClicked : FolderDetailEvent()
+
 	object UpdateFolderClicked : FolderDetailEvent()
 
 	object DeleteFolderClicked : FolderDetailEvent()
@@ -35,6 +37,8 @@ sealed class FolderDetailEffect : ViewSideEffect {
 		object ToBack : Navigation()
 
 		object ToHome : Navigation()
+
+		object ToCreateSubject : Navigation()
 
 		data class ToSubjectDetail(val subjectId: Int) : Navigation()
 	}

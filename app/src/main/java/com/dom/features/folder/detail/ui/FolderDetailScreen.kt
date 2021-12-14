@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
@@ -83,6 +84,17 @@ fun FolderDetailView(
                 onTwoIconClicked = { onEventSent(FolderDetailEvent.DeleteFolderClicked) },
                 onBackIconClicked = { onEventSent(FolderDetailEvent.BackClicked) },
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { onEventSent(FolderDetailEvent.CreateSubjectClicked) },
+                backgroundColor = MaterialTheme.colors.primary,
+            ) {
+                Icon(
+                    Icons.Filled.Add,
+                    contentDescription = null,
+                )
+            }
         },
     ) {
         Surface(

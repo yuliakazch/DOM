@@ -28,11 +28,12 @@
 
     <string name="subject">Предмет</string>
     <string name="new_subject">Новый предмет</string>
-    <string name="note">Описание</string>
+    <string name="note">Заметка</string>
     <string name="price">Цена</string>
     <string name="amount">Количество</string>
     <string name="private_subject">Личный предмет</string>
     <string name="subject_edit">Редактирование предмета</string>
+    <string name="subject_create">Создание предмета</string>
 
     <string name="profile_title">Профиль</string>
     <string name="profile_logout">Выйти из аккаунта</string>

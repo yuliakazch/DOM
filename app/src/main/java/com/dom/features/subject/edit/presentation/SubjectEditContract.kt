@@ -30,6 +30,6 @@ sealed class SubjectEditEffect : ViewSideEffect {
 
         object ToBack : Navigation()
 
-        data class ToSubjectDetail(val id: Int) : Navigation()
+        object ToHome : Navigation()
     }
 }

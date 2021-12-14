@@ -12,4 +12,5 @@ object NavigationKeys {
     const val FOLDER_DETAIL = "folderDetail"
     const val SUBJECT_DETAIL = "subjectDetail"
     const val SUBJECT_EDIT = "subjectEdit"
+    const val SUBJECT_CREATE = "subjectCreate"
 }

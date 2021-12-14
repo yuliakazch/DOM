@@ -45,6 +45,10 @@ class FolderDetailViewModel @Inject constructor(
 
     override fun handleEvents(event: FolderDetailEvent) {
         when (event) {
+            is FolderDetailEvent.CreateSubjectClicked -> {
+                setEffect { FolderDetailEffect.Navigation.ToCreateSubject }
+            }
+
             is FolderDetailEvent.UpdateFolderClicked -> {
                 updateFolder()
             }

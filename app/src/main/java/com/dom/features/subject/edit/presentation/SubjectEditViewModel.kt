@@ -87,7 +87,7 @@ class SubjectEditViewModel @Inject constructor(
                 setState { copy(loading = true) }
                 try {
                     updateSubjectUseCase(data.convertToDomainData())
-                    setEffect { SubjectEditEffect.Navigation.ToSubjectDetail(subjectId) }
+                    setEffect { SubjectEditEffect.Navigation.ToHome }
                 } catch (e: Throwable) {
                     setEffect { SubjectEditEffect.Error() }
                 }

@@ -32,6 +32,7 @@
     <string name="amount">Amount</string>
     <string name="private_subject">Private subject</string>
     <string name="subject_edit">Edit item</string>
+    <string name="subject_create">Create item</string>
 
     <string name="profile_title">Profile</string>
     <string name="profile_logout">Logout</string>

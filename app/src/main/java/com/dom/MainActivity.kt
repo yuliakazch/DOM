@@ -27,9 +27,11 @@ import com.dom.core.NavigationKeys.PROFILE
 import com.dom.core.NavigationKeys.SIGN_IN
 import com.dom.core.NavigationKeys.SIGN_UP
 import com.dom.core.NavigationKeys.SPLASH
+import com.dom.core.NavigationKeys.SUBJECT_CREATE
 import com.dom.core.NavigationKeys.SUBJECT_DETAIL
 import com.dom.core.NavigationKeys.SUBJECT_EDIT
 import com.dom.features.folder.detail.ui.FolderDetailDestination
+import com.dom.features.subject.create.ui.SubjectCreateDestination
 import com.dom.features.subject.detail.ui.SubjectDetailDestination
 import com.dom.features.subject.edit.ui.SubjectEditDestination
 import dagger.hilt.android.AndroidEntryPoint
@@ -119,6 +121,8 @@ fun DOMApp() {
                         ) {
                             SubjectEditDestination(navController)
                         }
+
+                        composable(SUBJECT_CREATE) { SubjectCreateDestination(navController) }
                     }
                     navigation(
                         startDestination = PROFILE,

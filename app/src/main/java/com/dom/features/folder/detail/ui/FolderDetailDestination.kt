@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.dom.core.NavigationKeys.HOME
+import com.dom.core.NavigationKeys.SUBJECT_CREATE
 import com.dom.core.NavigationKeys.SUBJECT_DETAIL
 import com.dom.features.folder.detail.presentation.FolderDetailEffect
 import com.dom.features.folder.detail.presentation.FolderDetailViewModel
@@ -28,6 +29,10 @@ fun FolderDetailDestination(navController: NavHostController) {
                     navController.navigate(HOME) {
                         popUpTo(HOME) { inclusive = true }
                     }
+                }
+
+                is FolderDetailEffect.Navigation.ToCreateSubject -> {
+                    navController.navigate(SUBJECT_CREATE)
                 }
 
                 is FolderDetailEffect.Navigation.ToSubjectDetail -> {
