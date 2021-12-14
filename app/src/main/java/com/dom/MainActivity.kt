@@ -28,8 +28,10 @@ import com.dom.core.NavigationKeys.SIGN_IN
 import com.dom.core.NavigationKeys.SIGN_UP
 import com.dom.core.NavigationKeys.SPLASH
 import com.dom.core.NavigationKeys.SUBJECT_DETAIL
+import com.dom.core.NavigationKeys.SUBJECT_EDIT
 import com.dom.features.folder.detail.ui.FolderDetailDestination
 import com.dom.features.subject.detail.ui.SubjectDetailDestination
+import com.dom.features.subject.edit.ui.SubjectEditDestination
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalFoundationApi
@@ -109,6 +111,13 @@ fun DOMApp() {
                             arguments = listOf(navArgument("subjectId") { type = NavType.IntType }),
                         ) {
                             SubjectDetailDestination(navController)
+                        }
+
+                        composable(
+                            route = "$SUBJECT_EDIT/{subjectId}",
+                            arguments = listOf(navArgument("subjectId") { type = NavType.IntType }),
+                        ) {
+                            SubjectEditDestination(navController)
                         }
                     }
                     navigation(

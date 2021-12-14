@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.dom.core.NavigationKeys.HOME
+import com.dom.core.NavigationKeys.SUBJECT_EDIT
 import com.dom.features.subject.detail.presentation.SubjectDetailEffect
 import com.dom.features.subject.detail.presentation.SubjectDetailViewModel
 
@@ -30,7 +31,7 @@ fun SubjectDetailDestination(navController: NavHostController) {
                 }
 
                 is SubjectDetailEffect.Navigation.ToEditSubject -> {
-                    //navController.navigate("${NavigationKeys.SUBJECT_EDIT}/${navigationEffect.subjectId}")
+                    navController.navigate("${SUBJECT_EDIT}/${navigationEffect.subjectId}")
                 }
             }
         }

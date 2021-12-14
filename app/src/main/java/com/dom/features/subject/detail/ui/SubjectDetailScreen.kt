@@ -76,7 +76,7 @@ fun SubjectDetailView(
     Scaffold(
         topBar = {
             TopBarFullView(
-                title = subject.name ?: stringResource(R.string.subject),
+                title = subject.name,
                 oneIcon = Icons.Filled.Edit,
                 twoIcon = Icons.Filled.Delete,
                 onOneIconClicked = { onEventSent(SubjectDetailEvent.UpdateSubjectClicked) },
