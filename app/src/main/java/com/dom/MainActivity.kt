@@ -109,15 +109,21 @@ fun DOMApp() {
                         }
 
                         composable(
-                            route = "$SUBJECT_DETAIL/{subjectId}",
-                            arguments = listOf(navArgument("subjectId") { type = NavType.IntType }),
+                            route = "$SUBJECT_DETAIL/{folderId}/{subjectId}",
+                            arguments = listOf(
+                                navArgument("folderId") { type = NavType.IntType },
+                                navArgument("subjectId") { type = NavType.IntType },
+                            ),
                         ) {
                             SubjectDetailDestination(navController)
                         }
 
                         composable(
-                            route = "$SUBJECT_EDIT/{subjectId}",
-                            arguments = listOf(navArgument("subjectId") { type = NavType.IntType }),
+                            route = "$SUBJECT_EDIT/{folderId}/{subjectId}",
+                            arguments = listOf(
+                                navArgument("folderId") { type = NavType.IntType },
+                                navArgument("subjectId") { type = NavType.IntType },
+                            ),
                         ) {
                             SubjectEditDestination(navController)
                         }

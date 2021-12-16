@@ -40,6 +40,6 @@ sealed class FolderDetailEffect : ViewSideEffect {
 
 		data class ToCreateSubject(val folderId: Int) : Navigation()
 
-		data class ToSubjectDetail(val subjectId: Int) : Navigation()
+		data class ToSubjectDetail(val folderId: Int, val subjectId: Int) : Navigation()
 	}
 }

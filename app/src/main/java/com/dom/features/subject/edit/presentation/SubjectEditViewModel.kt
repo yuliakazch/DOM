@@ -18,6 +18,7 @@ class SubjectEditViewModel @Inject constructor(
     private val updateSubjectUseCase: UpdateSubjectUseCase,
 ) : BaseViewModel<SubjectEditEvent, SubjectEditState, SubjectEditEffect>() {
 
+    private var folderId: Int = savedStateHandle.get<Int>("folderId") ?: throw NullPointerException("folderId is null")
     private var subjectId: Int = savedStateHandle.get<Int>("subjectId") ?: throw NullPointerException("subjectId is null")
 
     override fun setInitialState(): SubjectEditState =
@@ -98,6 +99,7 @@ class SubjectEditViewModel @Inject constructor(
     private fun SubjectEditData.convertToDomainData(): Subject =
         Subject(
             id = id,
+            folderId = folderId,
             name = name,
             note = note,
             price = price.toFloat(),

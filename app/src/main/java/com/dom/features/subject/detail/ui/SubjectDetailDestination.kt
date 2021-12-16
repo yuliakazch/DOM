@@ -31,7 +31,7 @@ fun SubjectDetailDestination(navController: NavHostController) {
                 }
 
                 is SubjectDetailEffect.Navigation.ToEditSubject -> {
-                    navController.navigate("${SUBJECT_EDIT}/${navigationEffect.subjectId}")
+                    navController.navigate("${SUBJECT_EDIT}/${navigationEffect.folderId}/${navigationEffect.subjectId}")
                 }
             }
         }

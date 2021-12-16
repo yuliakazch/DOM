@@ -36,7 +36,7 @@ fun FolderDetailDestination(navController: NavHostController) {
                 }
 
                 is FolderDetailEffect.Navigation.ToSubjectDetail -> {
-                    navController.navigate("${SUBJECT_DETAIL}/${navigationEffect.subjectId}")
+                    navController.navigate("${SUBJECT_DETAIL}/${navigationEffect.folderId}/${navigationEffect.subjectId}")
                 }
             }
         }

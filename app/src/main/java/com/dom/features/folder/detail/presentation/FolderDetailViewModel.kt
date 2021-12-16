@@ -60,7 +60,7 @@ class FolderDetailViewModel @Inject constructor(
             }
 
             is FolderDetailEvent.SubjectClicked -> {
-                setEffect { FolderDetailEffect.Navigation.ToSubjectDetail(event.subjectId) }
+                setEffect { FolderDetailEffect.Navigation.ToSubjectDetail(folderId, event.subjectId) }
             }
 
             is FolderDetailEvent.ShowEditFolderDialogChanged -> {

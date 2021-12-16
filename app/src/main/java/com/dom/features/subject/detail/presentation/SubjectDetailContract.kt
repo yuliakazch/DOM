@@ -29,6 +29,6 @@ sealed class SubjectDetailEffect : ViewSideEffect {
 
         object ToHome : Navigation()
 
-        data class ToEditSubject(val subjectId: Int) : Navigation()
+        data class ToEditSubject(val folderId: Int, val subjectId: Int) : Navigation()
     }
 }

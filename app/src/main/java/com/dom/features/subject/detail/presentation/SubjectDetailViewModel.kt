@@ -7,6 +7,7 @@ import com.dom.shared.subject.domain.usecase.DeleteSubjectUseCase
 import com.dom.shared.subject.domain.usecase.GetSubjectUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.NullPointerException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,26 +17,24 @@ class SubjectDetailViewModel @Inject constructor(
     private val deleteSubjectUseCase: DeleteSubjectUseCase,
 ) : BaseViewModel<SubjectDetailEvent, SubjectDetailState, SubjectDetailEffect>() {
 
-    private var subjectId: Int? = null
+    private var folderId: Int = savedStateHandle.get<Int>("folderId") ?: throw NullPointerException("folderId is null")
+    private var subjectId: Int = savedStateHandle.get<Int>("subjectId") ?: throw NullPointerException("subjectId is null")
 
     override fun setInitialState(): SubjectDetailState =
         SubjectDetailState(data = null, loading = false)
 
     init {
-        subjectId = savedStateHandle.get<Int>("subjectId")
         loadSubject()
     }
 
     private fun loadSubject() {
-        subjectId?.let { id ->
-            viewModelScope.launch {
-                setState { copy(loading = true) }
-                try {
-                    val subject = getSubjectUseCase(id)
-                    setState { copy(data = subject, loading = false) }
-                } catch (e: Throwable) {
-                    setState { copy(data = null, loading = false) }
-                }
+        viewModelScope.launch {
+            setState { copy(loading = true) }
+            try {
+                val subject = getSubjectUseCase(subjectId)
+                setState { copy(data = subject, loading = false) }
+            } catch (e: Throwable) {
+                setState { copy(data = null, loading = false) }
             }
         }
     }
@@ -51,24 +50,20 @@ class SubjectDetailViewModel @Inject constructor(
             }
 
             is SubjectDetailEvent.UpdateSubjectClicked -> {
-                subjectId?.let { id ->
-                    setEffect { SubjectDetailEffect.Navigation.ToEditSubject(id) }
-                }
+                setEffect { SubjectDetailEffect.Navigation.ToEditSubject(folderId, subjectId) }
             }
         }
     }
 
     private fun deleteSubject() {
-        subjectId?.let { id ->
-            viewModelScope.launch {
-                setState { copy(loading = true) }
-                try {
-                    deleteSubjectUseCase(id)
-                    setEffect { SubjectDetailEffect.Navigation.ToHome }
-                } catch (e: Throwable) {
-                    setState { copy(loading = false) }
-                    setEffect { SubjectDetailEffect.Error() }
-                }
+        viewModelScope.launch {
+            setState { copy(loading = true) }
+            try {
+                deleteSubjectUseCase(subjectId)
+                setEffect { SubjectDetailEffect.Navigation.ToHome }
+            } catch (e: Throwable) {
+                setState { copy(loading = false) }
+                setEffect { SubjectDetailEffect.Error() }
             }
         }
     }
