@@ -1,17 +1,22 @@
 package com.dom.features.subject.create.presentation
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.dom.core.BaseViewModel
 import com.dom.shared.subject.domain.entity.Subject
 import com.dom.shared.subject.domain.usecase.CreateSubjectUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.NullPointerException
 import javax.inject.Inject
 
 @HiltViewModel
 class SubjectCreateViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val createSubjectUseCase: CreateSubjectUseCase,
 ) : BaseViewModel<SubjectCreateEvent, SubjectCreateState, SubjectCreateEffect>() {
+
+    private var folderId: Int = savedStateHandle.get<Int>("folderId") ?: throw NullPointerException("folderId is null")
 
     override fun setInitialState(): SubjectCreateState =
         SubjectCreateState(data = SubjectCreateData(), loading = false)
@@ -62,10 +67,11 @@ class SubjectCreateViewModel @Inject constructor(
 
     private fun SubjectCreateData.convertToDomainData(): Subject =
         Subject(
+            folderId = folderId,
             name = name,
             note = note,
-            price = price.toFloat(),
-            amount = amount.toInt(),
+            price = if (price != "") price.toFloat() else 0f,
+            amount = if (amount != "") amount.toInt() else 0,
             private = private,
         )
 }

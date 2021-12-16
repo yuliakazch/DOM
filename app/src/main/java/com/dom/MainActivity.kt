@@ -122,7 +122,12 @@ fun DOMApp() {
                             SubjectEditDestination(navController)
                         }
 
-                        composable(SUBJECT_CREATE) { SubjectCreateDestination(navController) }
+                        composable(
+                            route = "$SUBJECT_CREATE/{folderId}",
+                            arguments = listOf(navArgument("folderId") { type = NavType.IntType }),
+                        ) {
+                            SubjectCreateDestination(navController)
+                        }
                     }
                     navigation(
                         startDestination = PROFILE,

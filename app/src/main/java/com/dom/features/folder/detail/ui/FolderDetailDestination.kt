@@ -32,7 +32,7 @@ fun FolderDetailDestination(navController: NavHostController) {
                 }
 
                 is FolderDetailEffect.Navigation.ToCreateSubject -> {
-                    navController.navigate(SUBJECT_CREATE)
+                    navController.navigate("${SUBJECT_CREATE}/${navigationEffect.folderId}")
                 }
 
                 is FolderDetailEffect.Navigation.ToSubjectDetail -> {

@@ -9,6 +9,7 @@ import com.dom.shared.folder.domain.usecase.GetFolderInfoUseCase
 import com.dom.shared.folder.domain.usecase.UpdateFolderUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.NullPointerException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,26 +20,23 @@ class FolderDetailViewModel @Inject constructor(
     private val deleteFolderUseCase: DeleteFolderUseCase,
 ) : BaseViewModel<FolderDetailEvent, FolderDetailState, FolderDetailEffect>() {
 
-    private var folderId: Int? = null
+    private var folderId: Int = savedStateHandle.get<Int>("folderId") ?: throw NullPointerException("folderId is null")
 
     override fun setInitialState(): FolderDetailState =
         FolderDetailState(data = null, loading = false, editingFolder = EditingFolder())
 
     init {
-        folderId = savedStateHandle.get<Int>("folderId")
         loadFolderInfo()
     }
 
     private fun loadFolderInfo() {
-        folderId?.let { id ->
-            viewModelScope.launch {
-                setState { copy(loading = true) }
-                try {
-                    val info = getFolderInfoUseCase(id)
-                    setState { copy(data = info, loading = false, editingFolder = editingFolder.copy(nameFolder = info.name ?: "")) }
-                } catch (e: Throwable) {
-                    setState { copy(data = null, loading = false) }
-                }
+        viewModelScope.launch {
+            setState { copy(loading = true) }
+            try {
+                val info = getFolderInfoUseCase(folderId)
+                setState { copy(data = info, loading = false, editingFolder = editingFolder.copy(nameFolder = info.name ?: "")) }
+            } catch (e: Throwable) {
+                setState { copy(data = null, loading = false) }
             }
         }
     }
@@ -46,7 +44,7 @@ class FolderDetailViewModel @Inject constructor(
     override fun handleEvents(event: FolderDetailEvent) {
         when (event) {
             is FolderDetailEvent.CreateSubjectClicked -> {
-                setEffect { FolderDetailEffect.Navigation.ToCreateSubject }
+                setEffect { FolderDetailEffect.Navigation.ToCreateSubject(folderId) }
             }
 
             is FolderDetailEvent.UpdateFolderClicked -> {
@@ -80,33 +78,29 @@ class FolderDetailViewModel @Inject constructor(
     }
 
     private fun updateFolder() {
-        folderId?.let { id ->
-            viewModelScope.launch {
-                setState { copy(loading = true) }
-                try {
-                    val name = viewState.value.editingFolder.nameFolder
-                    updateFolderUseCase(Folder(id, name))
-                    setState { copy(editingFolder = EditingFolder(nameFolder = name)) }
-                    loadFolderInfo()
-                } catch (e: Throwable) {
-                    setState { copy(loading = false, editingFolder = EditingFolder()) }
-                    setEffect { FolderDetailEffect.Error() }
-                }
+        viewModelScope.launch {
+            setState { copy(loading = true) }
+            try {
+                val name = viewState.value.editingFolder.nameFolder
+                updateFolderUseCase(Folder(folderId, name))
+                setState { copy(editingFolder = EditingFolder(nameFolder = name)) }
+                loadFolderInfo()
+            } catch (e: Throwable) {
+                setState { copy(loading = false, editingFolder = EditingFolder()) }
+                setEffect { FolderDetailEffect.Error() }
             }
         }
     }
 
     private fun deleteFolder() {
-        folderId?.let { id ->
-            viewModelScope.launch {
-                setState { copy(loading = true) }
-                try {
-                    deleteFolderUseCase(id)
-                    setEffect { FolderDetailEffect.Navigation.ToHome }
-                } catch (e: Throwable) {
-                    setState { copy(loading = false) }
-                    setEffect { FolderDetailEffect.Error() }
-                }
+        viewModelScope.launch {
+            setState { copy(loading = true) }
+            try {
+                deleteFolderUseCase(folderId)
+                setEffect { FolderDetailEffect.Navigation.ToHome }
+            } catch (e: Throwable) {
+                setState { copy(loading = false) }
+                setEffect { FolderDetailEffect.Error() }
             }
         }
     }
