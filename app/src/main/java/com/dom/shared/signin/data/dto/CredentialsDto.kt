@@ -1,4 +1,4 @@
-package com.dom.features.signin.data.dto
+package com.dom.shared.signin.data.dto
 
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass

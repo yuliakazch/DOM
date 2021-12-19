@@ -3,7 +3,7 @@ package com.dom.features.signin.presentation
 import com.dom.core.ViewEvent
 import com.dom.core.ViewSideEffect
 import com.dom.core.ViewState
-import com.dom.features.signin.domain.entity.Credentials
+import com.dom.shared.signin.domain.entity.Credentials
 
 sealed class SignInEvent : ViewEvent {
 

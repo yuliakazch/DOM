@@ -2,8 +2,8 @@ package com.dom.features.signin.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.dom.core.BaseViewModel
-import com.dom.features.signin.domain.entity.Credentials
-import com.dom.features.signin.domain.usecases.SignInUseCase
+import com.dom.shared.signin.domain.entity.Credentials
+import com.dom.shared.signin.domain.usecases.SignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class SignInViewModel @Inject constructor(
 	override fun handleEvents(event: SignInEvent) {
 		when (event) {
 			is SignInEvent.SignInClicked       -> {
-				login()
+				signIn()
 			}
 
 			is SignInEvent.RegistrationClicked -> {
@@ -40,7 +40,7 @@ class SignInViewModel @Inject constructor(
 		}
 	}
 
-	private fun login() {
+	private fun signIn() {
 		viewModelScope.launch {
 			setState { copy(loading = true) }
 			try {

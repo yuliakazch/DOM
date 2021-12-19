@@ -1,25 +1,25 @@
-package com.dom.features.signin.data.repository
+package com.dom.shared.signin.data.repository
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.dom.features.signin.data.api.SignInApi
-import com.dom.features.signin.data.mapper.toDto
-import com.dom.features.signin.data.mapper.toEntity
-import com.dom.features.signin.domain.entity.Credentials
-import com.dom.features.signin.domain.entity.Token
-import com.dom.features.signin.domain.repository.SignInRepository
+import com.dom.shared.signin.data.mapper.toDto
+import com.dom.shared.signin.data.mapper.toEntity
+import com.dom.shared.signin.domain.entity.Credentials
+import com.dom.shared.signin.domain.entity.Token
+import com.dom.shared.signin.domain.repository.SignInRepository
 import com.dom.core.KeyArgs.TOKEN
+import com.dom.shared.signin.data.datasource.SignInDataSource
 import javax.inject.Inject
 
 class SignInRepositoryImpl @Inject constructor(
-    private val api: SignInApi,
+    private val dataSource: SignInDataSource,
     private val sharedPreferences: SharedPreferences
 ) : SignInRepository {
 
     override suspend fun signIn(credentials: Credentials) {
         clearToken()
         val credentialsDto = credentials.toDto()
-        val token = api.signIn(credentialsDto).toEntity()
+        val token = dataSource.signIn(credentialsDto).toEntity()
         saveToken(token)
         return
     }

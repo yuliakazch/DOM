@@ -1,7 +1,7 @@
-package com.dom.features.signin.data.mapper
+package com.dom.shared.signin.data.mapper
 
-import com.dom.features.signin.data.dto.CredentialsDto
-import com.dom.features.signin.domain.entity.Credentials
+import com.dom.shared.signin.data.dto.CredentialsDto
+import com.dom.shared.signin.domain.entity.Credentials
 import org.apache.commons.codec.digest.DigestUtils
 
 fun Credentials.toDto() = CredentialsDto(
