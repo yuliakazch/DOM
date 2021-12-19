@@ -83,8 +83,7 @@ class FolderDetailViewModel @Inject constructor(
             try {
                 val name = viewState.value.editingFolder.nameFolder
                 updateFolderUseCase(Folder(folderId, name))
-                setState { copy(editingFolder = EditingFolder(nameFolder = name)) }
-                loadFolderInfo()
+                setEffect { FolderDetailEffect.Navigation.ToHome }
             } catch (e: Throwable) {
                 setState { copy(loading = false, editingFolder = EditingFolder()) }
                 setEffect { FolderDetailEffect.Error() }
