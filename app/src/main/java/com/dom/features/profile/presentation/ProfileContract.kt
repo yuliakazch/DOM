@@ -10,9 +10,21 @@ sealed class ProfileEvent : ViewEvent {
     object LogoutClicked : ProfileEvent()
 
     object DeleteClicked : ProfileEvent()
+
+    object ChangePasswordClicked : ProfileEvent()
+
+    data class CurrentPasswordChanged(val newValue: String) : ProfileEvent()
+
+    data class NewPasswordChanged(val newValue: String) : ProfileEvent()
+
+    data class NewPasswordAgainChanged(val newValue: String) : ProfileEvent()
 }
 
-data class ProfileState(val data: Profile?, val loading: Boolean) : ViewState
+data class ProfileState(
+    val profile: Profile?,
+    val passwords: PasswordContent,
+    val loading: Boolean,
+) : ViewState
 
 sealed class ProfileEffect : ViewSideEffect {
 

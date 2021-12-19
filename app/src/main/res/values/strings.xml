@@ -37,4 +37,8 @@
     <string name="profile_title">Profile</string>
     <string name="profile_logout">Logout</string>
     <string name="profile_delete">Delete account</string>
+    <string name="change_password">Change password</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="new_password_again">Confirm new password</string>
 </resources>

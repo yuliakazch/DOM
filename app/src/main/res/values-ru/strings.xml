@@ -38,4 +38,8 @@
     <string name="profile_title">Профиль</string>
     <string name="profile_logout">Выйти из аккаунта</string>
     <string name="profile_delete">Удалить аккаунт</string>
+    <string name="change_password">Изменение пароля</string>
+    <string name="current_password">Текущий пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="new_password_again">Еще раз новый пароль</string>
 </resources>
