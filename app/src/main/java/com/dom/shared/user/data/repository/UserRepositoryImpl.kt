@@ -1,7 +1,9 @@
 package com.dom.shared.user.data.repository
 
 import com.dom.shared.user.data.datasource.UserDataSource
+import com.dom.shared.user.data.mapper.toDto
 import com.dom.shared.user.data.mapper.toEntity
+import com.dom.shared.user.domain.entity.PasswordData
 import com.dom.shared.user.domain.entity.Profile
 import com.dom.shared.user.domain.repository.UserRepository
 import javax.inject.Inject
@@ -15,5 +17,9 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun delete() {
         dataSource.delete()
+    }
+
+    override suspend fun changePassword(data: PasswordData) {
+        dataSource.changePassword(data.toDto())
     }
 }
