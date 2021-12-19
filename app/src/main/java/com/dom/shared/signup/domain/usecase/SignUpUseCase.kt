@@ -1,7 +1,7 @@
-package com.dom.features.signup.domain.usecases
+package com.dom.shared.signup.domain.usecase
 
-import com.dom.features.signup.domain.entity.SignUpData
-import com.dom.features.signup.domain.repository.SignUpRepository
+import com.dom.shared.signup.domain.entity.SignUpData
+import com.dom.shared.signup.domain.repository.SignUpRepository
 import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(private val repository: SignUpRepository) {

@@ -2,8 +2,8 @@ package com.dom.features.signup.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.dom.core.BaseViewModel
-import com.dom.features.signup.domain.entity.SignUpData
-import com.dom.features.signup.domain.usecases.SignUpUseCase
+import com.dom.shared.signup.domain.entity.SignUpData
+import com.dom.shared.signup.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -46,7 +46,7 @@ class SignUpViewModel @Inject constructor(
 		}
 	}
 
-	fun signUp() {
+	private fun signUp() {
 		viewModelScope.launch {
 			setState { copy(loading = true) }
 			try {

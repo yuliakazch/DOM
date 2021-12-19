@@ -1,7 +1,7 @@
-package com.dom.features.signup.data.mapper
+package com.dom.shared.signup.data.mapper
 
-import com.dom.features.signup.data.dto.SignUpDataDto
-import com.dom.features.signup.domain.entity.SignUpData
+import com.dom.shared.signup.data.dto.SignUpDataDto
+import com.dom.shared.signup.domain.entity.SignUpData
 import org.apache.commons.codec.digest.DigestUtils
 
 fun SignUpData.toDto() = SignUpDataDto(
